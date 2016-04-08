@@ -96,7 +96,7 @@ Lua 5.1.4  Copyright (C) 1994-2008 Lua.org, PUC-Rio
 })
 
 -- Numbers. {{{2
-check_tokens(lxsh.lexers.lua.gmatch '1 3.14 1. .1 0x0123456789ABCDEF 1e5', {
+check_tokens(lxsh.lexers.lua.gmatch '1 3.14 1. .1 0x0123456789ABCDEF 1e5 0xA23p-4 0X1.921FB54442D18P+1', {
   { 'number', '1' },
   { 'whitespace', ' ' },
   { 'number', '3.14' },
@@ -108,6 +108,10 @@ check_tokens(lxsh.lexers.lua.gmatch '1 3.14 1. .1 0x0123456789ABCDEF 1e5', {
   { 'number', '0x0123456789ABCDEF' },
   { 'whitespace', ' ' },
   { 'number', '1e5' },
+  { 'whitespace', ' ' },
+  { 'number', '0xA23p-4' },
+  { 'whitespace', ' ' },
+  { 'number', '0X1.921FB54442D18P+1' },
 })
 
 -- String literals. {{{2

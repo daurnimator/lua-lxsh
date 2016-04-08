@@ -14,6 +14,7 @@ local P = lpeg.P
 local R = lpeg.R
 local S = lpeg.S
 local D = R'09'
+local X = R('09', 'AF', 'af')
 local I = R('AZ', 'az', '\127\255') + '_'
 local B = -(I + D) -- word boundary
 
@@ -65,11 +66,13 @@ context:define('comment', multiline + singleline + shebang)
 
 -- Numbers.
 local sign = S'+-'^-1
+local hexadecimal = X^1
 local decimal = D^1
-local hexadecimal = P'0' * S'xX' * R('09', 'AF', 'af') ^ 1
-local float = D^1 * P'.' * D^0 + P'.' * D^1
-local maybeexp = (float + decimal) * (S'eE' * sign * D^1)^-1
-context:define('number', hexadecimal + maybeexp)
+local hexfloat = X^1 * P'.' * X^0 + P'.' * X^1
+local decfloat = D^1 * P'.' * D^0 + P'.' * D^1
+local hexexp = P'0' * S'xX' * (hexfloat + hexadecimal)* (S'pP' * sign * D^1)^-1
+local decexp = (decfloat + decimal) * (S'eE' * sign * D^1)^-1
+context:define('number', hexexp + decexp)
 
 -- Identifiers
 local ident = I * (I + D)^0
