@@ -367,7 +367,7 @@ if include_all_manpages then
   end
 end
 
--- Generate the src/docs/*.lua scripts. {{{1
+-- Generate the lxsh/docs/*.lua scripts. {{{1
 
 function sorted(input)
   local keys = {}
@@ -390,7 +390,7 @@ function dump(language, doclinks)
       lines[#lines + 1] = string.format('[%q]=%q,', id, url)
     end
   end
-  local outfile = 'src/docs/' .. language:lower() .. '.lua'
+  local outfile = 'lxsh/docs/' .. language:lower() .. '.lua'
   message("Generating %s ..", outfile)
   local handle = assert(io.open(outfile, 'w'))
   handle:write(string.format([=[

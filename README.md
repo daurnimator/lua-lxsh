@@ -139,7 +139,7 @@ The easiest way to download and install LXSH is using [LuaRocks] [luarocks]:
 
     $ luarocks install lxsh
 
-If you don't have LuaRocks installed you can [download the latest release] [zipball] directly from GitHub as a ZIP archive. To install create an `lxsh` directory in your [$LUA_PATH] [lua_path] and copy the contents of the `src` directory from the ZIP archive to the `lxsh` directory so that you end up with the following structure:
+If you don't have LuaRocks installed you can [download the latest release] [zipball] directly from GitHub as a ZIP archive. To install create an `lxsh` directory in your [$LUA_PATH] [lua_path] and copy the contents of the `lxsh` directory from the ZIP archive to the `lxsh` directory so that you end up with the following structure:
 
  * `$LUA_PATH/lxsh/init.lua`
  * `$LUA_PATH/lxsh/lexers/*.lua`

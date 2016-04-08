@@ -4,7 +4,7 @@
 # Last Change: October 4, 2011
 # URL: http://peterodding.com/code/lua/lxsh/
 
-VERSION = $(shell grep _VERSION src/init.lua | cut "-d'" -f 2)
+VERSION = $(shell grep _VERSION lxsh/init.lua | cut "-d'" -f 2)
 RELEASE = $(VERSION)-1
 PACKAGE = lxsh-$(RELEASE)
 STYLESHEETS = examples/earendel.css \
@@ -22,7 +22,7 @@ test:
 links:
 	@lua etc/doclinks.lua
 
-examples/%.css: src/colors/%.lua src/init.lua
+examples/%.css: lxsh/colors/%.lua lxsh/init.lua
 	@lua -e "print(require 'lxsh'.formatters.html.stylesheet'$(notdir $(basename $@))')" > $@
 
 package: demo
@@ -30,7 +30,7 @@ package: demo
 	@mkdir -p $(PACKAGE)/etc
 	@cp -al etc/lxsh etc/demo.lua etc/doclinks.lua etc/styleswitcher.js $(PACKAGE)/etc
 	@cp -al examples $(PACKAGE)
-	@cp -al src $(PACKAGE)
+	@cp -al lxsh $(PACKAGE)
 	@cp README.md TODO.md $(PACKAGE)
 	@zip $(PACKAGE).zip  -x '*.sw*' -r $(PACKAGE)
 	@rm -R $(PACKAGE)
