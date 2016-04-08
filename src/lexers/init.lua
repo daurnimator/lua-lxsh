@@ -16,7 +16,7 @@ local D = lpeg.R'09'
 local I = lpeg.R('AZ', 'az', '\127\255') + '_'
 local SOS = lpeg.P(function(s, i) return i == 1 end) -- start of string
 local EOS = -lpeg.P(1) -- end of string
-local B = -(I + D) -- word boundary
+local B = #lpeg.P(1) + -(I + D) -- word boundary
 
 -- Transform a string with keywords into an LPeg pattern that matches a keyword
 -- followed by a word boundary. This automatically takes care of sorting from
@@ -34,9 +34,12 @@ local function compile_keywords(context, keywords)
     local p = lpeg.P(word)
     pattern = pattern and (pattern + p) or p
   end
-  local B = context.word_boundary or B
-  local BB = lpeg.B(B, 1) + SOS -- starting boundary
-  local AB = B + EOS -- ending boundary
+  local boundary = B
+  if context.word_boundary then
+    boundary = #lpeg.P(1) + context.word_boundary
+  end
+  local BB = lpeg.B(boundary) + SOS -- starting boundary
+  local AB = boundary + EOS -- ending boundary
   return BB * pattern * AB
 end
 
