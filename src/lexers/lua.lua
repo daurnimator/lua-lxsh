@@ -71,20 +71,25 @@ local float = D^1 * P'.' * D^0 + P'.' * D^1
 local maybeexp = (float + decimal) * (S'eE' * sign * D^1)^-1
 context:define('number', hexadecimal + maybeexp)
 
+-- Identifiers
+local ident = I * (I + D)^0
+
+-- Labels
+context:define('label', '::' * ident * '::')
+
 -- Operators (matched after comments because of conflict with minus).
 context:define('operator', P'not' + '...' + 'and' + '..' + '~=' + '==' + '>=' + '<='
   + "<<" + ">>" + "//" + 'or' + S']{=>^[<;)*(%}+-:,/.#~|&')
 
 -- Keywords.
 context:define('keyword', context:keywords [[
-  break do else elseif end for function if in local repeat return then until while
+  break do else elseif end for function goto if in local repeat return then until while
 ]])
 
 -- Identifiers - Sometimes it's very convenient to match for example "io.write"
 -- as one token instead of three, however this is not really a lexer's job. As
 -- a compromise we'll let the caller choose by passing a table of options with
 -- the key "join_identifiers" and the value "true":
-local ident = I * (I + D)^0
 local expr = ('.' * ident)^0
 context:define('identifier', lpeg.Cmt(ident * lpeg.Carg(1),
   function(input, index, options)

@@ -216,7 +216,7 @@ check_tokens(lxsh.lexers.lua.gmatch(operators), {
 })
 
 -- Keywords. {{{2
-local keywords = 'break do else elseif end for function if in local repeat return then until while'
+local keywords = 'break do else elseif end for function goto if in local repeat return then until while'
 check_tokens(lxsh.lexers.lua.gmatch(keywords), {
   { 'keyword', 'break' }, { 'whitespace', ' ' },
   { 'keyword', 'do' }, { 'whitespace', ' ' },
@@ -225,6 +225,7 @@ check_tokens(lxsh.lexers.lua.gmatch(keywords), {
   { 'keyword', 'end' }, { 'whitespace', ' ' },
   { 'keyword', 'for' }, { 'whitespace', ' ' },
   { 'keyword', 'function' }, { 'whitespace', ' ' },
+  { 'keyword', 'goto' }, { 'whitespace', ' ' },
   { 'keyword', 'if' }, { 'whitespace', ' ' },
   { 'keyword', 'in' }, { 'whitespace', ' ' },
   { 'keyword', 'local' }, { 'whitespace', ' ' },
