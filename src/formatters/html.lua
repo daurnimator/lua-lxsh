@@ -10,6 +10,8 @@
 
 ]]
 
+local lxsh = require "lxsh"
+
 local formatter = { format = 'html', extension = '.html' }
 
 -- escape(text, options) {{{1

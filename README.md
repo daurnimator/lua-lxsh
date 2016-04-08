@@ -153,7 +153,7 @@ If you don't have LuaRocks installed you can [download the latest release] [zipb
 If you want to call a lexer or access an LPeg pattern defined by a lexer you can do so as follows (this example demonstrates the Lua lexer but the other lexers work the same way):
 
     > -- Load the LXSH module.
-    > require 'lxsh'
+    > lxsh = require 'lxsh'
 
     > -- Run the lexer on a string of source code.
     > for kind, text, lnum, cnum in lxsh.lexers.lua.gmatch 'i = i + 1\n-- example' do

@@ -4,7 +4,7 @@
  and perform syntax highlighting based on the defined lexers.
 
  Author: Peter Odding <peter@peterodding.com>
- Last Change: December 3, 2011
+ Last Change: April 8, 2016
  URL: http://peterodding.com/code/lua/lxsh/
 
 ]]
@@ -48,13 +48,6 @@ function lxsh.sync(token, lnum, cnum)
     cnum = cnum + #token
   end
   return lnum, cnum
-end
-
--- Register LXSH in the global scope if it doesn't clash with an existing
--- global variable and bypass strict.lua because "we know what we're doing"
--- (in other words, "lua -llxsh" is very convenient).
-if not rawget(_G, 'lxsh') then
-  rawset(_G, 'lxsh', lxsh)
 end
 
 return lxsh
