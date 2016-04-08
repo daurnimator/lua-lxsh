@@ -1,9 +1,9 @@
 --[[
 
- Lexer for Lua 5.1 source code powered by LPeg.
+ Lexer for Lua 5.3 source code powered by LPeg.
 
  Author: Peter Odding <peter@peterodding.com>
- Last Change: September 30, 2011
+ Last Change: April 08, 2016
  URL: http://peterodding.com/code/lua/lxsh/
 
 ]]
@@ -73,7 +73,7 @@ context:define('number', hexadecimal + maybeexp)
 
 -- Operators (matched after comments because of conflict with minus).
 context:define('operator', P'not' + '...' + 'and' + '..' + '~=' + '==' + '>=' + '<='
-  + 'or' + S']{=>^[<;)*(%}+-:,/.#')
+  + "<<" + ">>" + "//" + 'or' + S']{=>^[<;)*(%}+-:,/.#~|&')
 
 -- Keywords.
 context:define('keyword', context:keywords [[
