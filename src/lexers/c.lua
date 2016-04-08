@@ -23,7 +23,6 @@ local O, D = R'07', R'09' -- octal, decimal
 local X = D + R'AF' + R'af' -- hexadecimal
 local W = U + L -- case insensitive letter
 local A = W + D + '_' -- identifier
-local B = -A -- word boundary
 local endline = S'\r\n\f' -- end of line character
 local newline = '\r\n' + endline -- newline sequence
 local escape = '\\' * ( newline -- escape sequence

@@ -18,8 +18,7 @@ local S = lpeg.S
 
 -- The following LPeg patterns are used as building blocks.
 local U, L = R'AZ', R'az' -- uppercase, lowercase
-local O, D = R'07', R'09' -- octal, decimal
-local X = D + R'AF' + R'af' -- hexadecimal
+local D = R'09' -- octal, decimal
 local W = U + L -- case insensitive letter
 local A = W + D + S'_' -- identifier
 local B = -(A + S'/.-') -- word boundary
